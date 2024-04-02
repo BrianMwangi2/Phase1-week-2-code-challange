@@ -76,17 +76,16 @@ const btn = document.getElementById('buy-ticket') // creating  a button element 
             } 
     })
 // deleting films functions
-    function deleteFilm() {
-    const response =  fetch(`${url}`, {
+   async function deleteFilm() {
+    const response =  await fetch (`${url}`, {
       method: 'GET',
         });
       
         if (response.ok) {
-          const data =  response.json();
+          const data = await response.json();
           const ul = document.getElementById('films');
       
           data.forEach((film) => {
-            const li = document.createElement('li');
             li.id = `film-${film.id}`;
             li.textContent = film.title;
             const btn = document.createElement('button');
@@ -99,4 +98,3 @@ const btn = document.getElementById('buy-ticket') // creating  a button element 
           console.error('Error fetching films:', response.status);
         }
       }
-deleteFilm();
